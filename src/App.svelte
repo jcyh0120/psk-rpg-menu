@@ -1,33 +1,87 @@
 <script lang="ts">
-  import svelteLogo from "./assets/svelte.svg";
-  import Counter from "./lib/Counter.svelte";
-  // import "nes.css/css/nes.min.css";
+  let select = 1;
+
+  function selectHandler(menu) {
+    select = menu;
+  }
 </script>
 
-<main>
+<main class="wrapper">
   <div class="nes-container with-title is-centered">
-    <button type="button" class="nes-btn is-primary">Primary</button>
-    <button type="button" class="nes-btn is-success">Success</button>
-    <button type="button" class="nes-btn is-warning">Warning</button>
-    <button type="button" class="nes-btn is-error">Error</button>
-    <button type="button" class="nes-btn is-disabled">Disabled</button>  
+    <p>{select}</p>
+  </div>
+
+  <div class="nav-bar">
+    <div>
+      <button
+        type="button"
+        class:active={select === 1}
+        class="nav-button nes-btn is-normal select"
+        on:click={() => selectHandler(1)}>狀態</button
+      >
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class:active={select === 2}
+        class="nav-button nes-btn is-normal"
+        on:click={() => selectHandler(2)}>任務</button
+      >
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class:active={select === 3}
+        class="nav-button nes-btn is-normal"
+        on:click={() => selectHandler(3)}>技能</button
+      >
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class:active={select === 4}
+        class="nav-button nes-btn is-normal"
+        on:click={() => selectHandler(4)}>成就</button
+      >
+    </div>
   </div>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  main {
+    /* debug use */
+    border-style: solid;
+    border-color: red;
+
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr 4rem;
+    grid-gap: 10px;
+    width: 100vw;
+    height: 100vh;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .nav-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    padding-right: 0.5rem;
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+
+  .nav-button {
+    font-size: larger;
+    grid-column: 1 / -1;
+    width: 100%;
   }
-  .read-the-docs {
-    color: #888;
+
+  .active {
+    background-color: black;
+    color: white;
   }
 </style>
