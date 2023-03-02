@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Tab from "./components/Tab.svelte";
+
   let select = 1;
 
   function selectHandler(menu) {
@@ -7,9 +9,7 @@
 </script>
 
 <main class="wrapper">
-  <div class="nes-container with-title is-centered">
-    <p>{select}</p>
-  </div>
+  <Tab {select} />
 
   <div class="nav-bar">
     <div>
