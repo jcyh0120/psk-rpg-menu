@@ -9,7 +9,9 @@
 </script>
 
 <main class="wrapper">
-  <Tab {select} />
+  <div class="info-board">
+    <Tab {select} />
+  </div>
 
   <div class="nav-bar">
     <div>
@@ -53,30 +55,41 @@
 <style>
   main {
     /* debug use */
-    border-style: solid;
-    border-color: red;
+    /* border-style: solid;
+    border-color: red; */
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+
+    max-width: 800px;
+    height: 100vh;
+    max-height: -webkit-fill-available;
 
     margin: 0 auto;
-    max-width: 800px;
+    padding-bottom: 0.3rem;
+    
+    background-color: white;
+    border-radius: 5px;
+
+  }
+
+  .info-board {
     padding: 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 1fr 4rem;
-    grid-gap: 10px;
-    width: 100vw;
-    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
   }
 
   .nav-bar {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
+    margin: 0 0.5rem;
     padding-right: 0.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
   }
 
   .nav-button {
     font-size: larger;
-    grid-column: 1 / -1;
     width: 100%;
   }
 
