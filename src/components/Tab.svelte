@@ -32,19 +32,19 @@
             <p><b>職位：</b></p>
 
             <div>
-                <p class="is-dark">
+                <p>
                     <i class="nes-icon is-small star" />
                     <span>Software Developer</span>
                 </p>
 
-                <p class="is-dark">
+                <!-- <p class="is-dark">
                     <i class="nes-icon is-small star is-half" />
                     <span>Fullstack Developer</span>
                 </p>
                 <p class="is-dark">
                     <i class="nes-icon is-small star is-empty" />
                     <span>Project Manager</span>
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
@@ -54,6 +54,12 @@
     <h2 class="title">故事</h2>
 
     <p>
+        這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
+        這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
+        這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
+        這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
+        這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
+        這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
         這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
         這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
         這是這個人的冒險故事 這是這個人的冒險故事 這是這個人的冒險故事
@@ -73,5 +79,9 @@
     .photo {
         flex: 1;
         text-align: end;
+    }
+
+    .nes-icon.is-small.star {
+        top: 0.15rem;
     }
 </style>
