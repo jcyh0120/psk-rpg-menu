@@ -1,85 +1,201 @@
 <script lang="ts">
   import Tab from "./components/Tab.svelte";
+  let tab;
 
   let select = 1;
-  let subMenu = false;
+
+  let statusMenu: "default" | "subMenu" | "edit" | "complete" = "default";
+  let editMode = false;
+  let taskMenu = false;
+  let skillMenu = false;
+  let achievementMenu = false;
 
   function selectHandler(menu) {
-    if (menu === 1 && select === 1) {
-    } else {
-      select = menu;
+    if (select === menu && menu === 1) {
+      statusMenu = "subMenu";
     }
+
+    select = menu;
+  }
+
+  function handleStatusReturnDefault() {
+    statusMenu = "default";
+    editMode = false;
+  }
+
+  function handleStatusEdit() {
+    statusMenu = "edit";
+    editMode = true;
+  }
+
+  function handleStatusComplete() {
+    statusMenu = "complete";
+  }
+
+  function handleStatusSave() {
+    tab.save();
+    editMode = false;
+    statusMenu = "default";
+  }
+
+  function handleStatusCancel() {
+    tab.cancel();
+    editMode = false;
+    statusMenu = "default";
   }
 </script>
 
 <main class="wrapper">
   <div class="info-board">
-    <Tab {select} />
-  </div>
-
-  <div class="nav-bar2">
-    <div>
-      <button
-        type="button"
-        class="nav-button nes-btn is-primary select"
-        on:click={() => selectHandler(1)}>編輯/儲存/取消</button
-      >
-
-      <button
-        type="button"
-        class="nav-button nes-btn is-primary select"
-        on:click={() => selectHandler(1)}>儲存</button
-      >
-      <button
-        type="button"
-        class="nav-button nes-btn is-primary select"
-        on:click={() => selectHandler(1)}>儲存/取消</button
-      >
-      <button
-        type="button"
-        class="nav-button nes-btn is-primary select"
-        on:click={() => selectHandler(1)}>編輯/儲存/取消</button
-      >
-    </div>
-
-    
+    <Tab bind:this={tab} {select} {editMode} />
   </div>
 
   <div class="nav-bar">
-    <div>
-      <button
-        type="button"
-        class:active={select === 1}
-        class="nav-button nes-btn is-normal select"
-        on:click={() => selectHandler(1)}>返回/完成</button
-      >
+    <div class="drop-wrapper">
+      {#if statusMenu === "default"}
+        <button
+          type="button"
+          class:active={select === 1}
+          class="nav-button nes-btn is-normal select"
+          on:click={() => selectHandler(1)}>狀態</button
+        >
+      {:else if statusMenu === "subMenu"}
+        <button
+          type="button"
+          class:active={select === 1}
+          class="nav-button nes-btn is-normal select"
+          on:click={handleStatusReturnDefault}>返回</button
+        >
+        <div class="drop-menu dropdown">
+          <button
+            type="button"
+            class="nav-button nes-btn is-primary select"
+            on:click={handleStatusEdit}>編輯</button
+          >
+        </div>
+      {:else if statusMenu === "edit"}
+        <button
+          type="button"
+          class:active={select === 1}
+          class="nav-button nes-btn is-normal select"
+          on:click={handleStatusComplete}>完成</button
+        >
+      {:else if statusMenu === "complete"}
+        <button
+          type="button"
+          class:active={select === 1}
+          class="nav-button nes-btn is-normal select"
+          on:click={handleStatusEdit}>返回</button
+        >
+        <div class="drop-menu dropdown">
+          <button
+            type="button"
+            class="nav-button nes-btn is-primary select"
+            on:click={handleStatusSave}>儲存</button
+          >
+          <button
+            type="button"
+            class="nav-button nes-btn is-primary select"
+            on:click={handleStatusCancel}>取消</button
+          >
+        </div>
+      {/if}
     </div>
 
-    <div>
+    <div class="drop-wrapper">
       <button
         type="button"
         class:active={select === 2}
         class="nav-button nes-btn is-normal"
         on:click={() => selectHandler(2)}>任務</button
       >
+      <div class="drop-menu dropdown" class:hide={true}>
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>編輯/儲存/取消</button
+        >
+
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>儲存</button
+        >
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>儲存/取消</button
+        >
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>編輯/儲存/取消</button
+        >
+      </div>
     </div>
 
-    <div>
+    <div class="drop-wrapper">
       <button
         type="button"
         class:active={select === 3}
         class="nav-button nes-btn is-normal"
         on:click={() => selectHandler(3)}>技能</button
       >
+      <div class="drop-menu dropdown" class:hide={true}>
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>編輯/儲存/取消</button
+        >
+
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>儲存</button
+        >
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>儲存/取消</button
+        >
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>編輯/儲存/取消</button
+        >
+      </div>
     </div>
 
-    <div>
+    <div class="drop-wrapper">
       <button
         type="button"
         class:active={select === 4}
         class="nav-button nes-btn is-normal"
         on:click={() => selectHandler(4)}>成就</button
       >
+      <div class="drop-menu dropdown" class:hide={true}>
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>編輯/儲存/取消</button
+        >
+
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>儲存</button
+        >
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>儲存/取消</button
+        >
+        <button
+          type="button"
+          class="nav-button nes-btn is-primary select"
+          on:click={() => selectHandler(1)}>編輯/儲存/取消</button
+        >
+      </div>
     </div>
   </div>
 </main>
@@ -151,5 +267,24 @@
     /* padding-right: 0.5rem; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
+  }
+
+  .drop-wrapper {
+    position: relative;
+  }
+
+  .drop-menu {
+    position: absolute;
+  }
+
+  .dropdown {
+    bottom: 100%;
+    padding-right: 0.2rem;
+    margin-bottom: 0.1rem;
+    width: 100%;
+  }
+
+  .hide {
+    display: none;
   }
 </style>
